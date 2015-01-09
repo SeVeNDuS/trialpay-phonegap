@@ -1,0 +1,42 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+    <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="uk.mondosports.plugins.fyber" version="0.0.1">
+    <name>Fyber</name>
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    <description>Trialpay Phonegap Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,trialpay,ads,offerwall</keywords>
+    <js-module src="www/trialpay.js" name="Trialpay">
+        <clobbers target="window.plugins.trialpay" />
+    </js-module>
+
+    <platform name="android">
+        <dependency id="com.google.playservices" />
+        
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Fyber">
+                <param name="android-package" value="uk.mondosports.plugins.trialpay.TrialpayPlugin"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.trialpay.android.OfferwallActivity" android:hardwareAccelerated="true" android:launchMode="singleTop" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"  android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|uiMode|touchscreen|screenSize"></activity>
+            <activity android:name="com.trialpay.android.OfferwallPopupActivity" android:hardwareAccelerated="true" android:launchMode="singleTop" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|uiMode|touchscreen|screenSize"></activity>  
+            <activity android:name="com.trialpay.android.VideoActivity" android:hardwareAccelerated="true" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|uiMode|touchscreen|screenSize"></activity>
+        </config-file>
+
+        <source-file src="android/TrialpayPlugin.java" target-dir="src/uk/mondosports/plugins/trialpay" />
+        <source-file src="android/TrialpayAndroidSdk.jar" target-dir="libs/" />
+    </platform>
+</plugin>

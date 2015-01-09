@@ -83,6 +83,7 @@ public class TrialpayPlugin extends CordovaPlugin {
     }
 
     private void showOfferWall(JSONObject options) {
+        TrialpayManager trialpayManager = TrialpayManager.getInstance(cordova.getActivity());
         trialpayManager.open(CONSTANT_TOUCHPOINT_NAME);
     }
     
